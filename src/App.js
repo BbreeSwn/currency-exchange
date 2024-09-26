@@ -12,6 +12,17 @@ function App() {
   const [amount, setAmount] = useState(1);
   const [exChangeRate, setExchangeRate] = useState(0);
 
+  const [checkFromCurrency, setCheckFromCurrency] = useState(true);
+  let fromAmount, toAmount;
+
+  if (checkFromCurrency) {
+    fromAmount = amount;
+    toAmount = (amount * exChangeRate).toFixed(2);
+  } else {
+    toAmount = amount;
+    fromAmount = (amount / exChangeRate).toFixed(2);
+  }
+
   useEffect(() => {
     const url = `https://api.exchangerate-api.com/v4/latest/${fromCurrency}`;
     fetch(url)
@@ -21,7 +32,7 @@ function App() {
         setCurrencyChoice([...Object.keys(data.rates)]);
         setExchangeRate(data.rates[toCurrency]);
       });
-  }, [fromCurrency,toCurrency]);
+  }, [fromCurrency, toCurrency]);
 
   return (
     <div>
@@ -32,12 +43,14 @@ function App() {
           currencyChoice={currencyChoice}
           selectCurrency={fromCurrency}
           changeCurrency={(e) => setFromCurrency(e.target.value)}
+          amount = {fromAmount}
         />
         <div className="equal"> = </div>
         <CurrencyComponent
           currencyChoice={currencyChoice}
           selectCurrency={toCurrency}
           changeCurrency={(e) => setToCurrency(e.target.value)}
+          amount = {toAmount}
         />
       </div>
     </div>
