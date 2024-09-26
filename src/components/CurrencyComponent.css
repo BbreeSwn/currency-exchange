@@ -44,3 +44,36 @@ select:focus,input:focus{
 
     outline: none;
 }
+
+
+/* Phone */
+@media (max-width: 600px) {
+    .money-img {
+        width: 80%; /* ขยายขนาดรูปเมื่ออยู่บนหน้าจอเล็ก */
+    }
+
+    .equal {
+        font-size: 2rem; /* ลดขนาดฟอนต์ของตัวเลขเมื่ออยู่บนหน้าจอเล็ก */
+    }
+
+    .currency {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row; /* จัดเรียงองค์ประกอบในแนวตั้ง */
+        align-items: center;
+    }
+
+.currency input {
+        width: 50%; /* ปรับขนาดให้เต็มหน้าจอเมื่ออยู่บนหน้าจอโทรศัพท์ */
+        font-size: 20px; /* เพิ่มขนาดฟอนต์ */
+        text-align: center;
+    }
+        .currency select{
+            width: 20%;
+            padding: 10px 20px 10px 10px;
+            border: 1px solid #dedede;
+            font-size: 16px;
+            background: transparent;
+            appearance: none;
+        }
+}
