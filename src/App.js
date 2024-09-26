@@ -4,18 +4,24 @@ import CurrencyComponent from "./components/CurrencyComponent";
 import { useEffect, useState } from "react";
 
 function App() {
-  const url = `https://api.exchangerate-api.com/v4/latest/AUD`;
-
   const [currencyChoice, setCurrencyChoice] = useState([]);
 
   const [fromCurrency, setFromCurrency] = useState("AUD");
   const [toCurrency, setToCurrency] = useState("THB");
 
+  const [amount, setAmount] = useState(1);
+  const [exChangeRate, setExchangeRate] = useState(0);
+
   useEffect(() => {
+    const url = `https://api.exchangerate-api.com/v4/latest/${fromCurrency}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setCurrencyChoice([...Object.keys(data.rates)]));
-  }, []);
+      // .then(data=>console.log(data.rates[toCurrency]))
+      .then((data) => {
+        setCurrencyChoice([...Object.keys(data.rates)]);
+        setExchangeRate(data.rates[toCurrency]);
+      });
+  }, [fromCurrency,toCurrency]);
 
   return (
     <div>
