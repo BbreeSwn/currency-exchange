@@ -1,11 +1,18 @@
-
+import money from "./image/money.png";
 import "./App.css";
+import CurrencyComponent from "./components/CurrencyComponent";
 
 function App() {
   return (
-    <>
-      <h1>Currency Exchange</h1>
-    </>
+    <div>
+      <img src={money} alt="logo" />
+      <h1>Currency Exchange (API)</h1>
+      <div className="container">
+        <CurrencyComponent />
+        <div className='equal'> = </div>
+        <CurrencyComponent />
+      </div>
+    </div>
   );
 }
 
