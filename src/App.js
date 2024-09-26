@@ -4,9 +4,13 @@ import CurrencyComponent from "./components/CurrencyComponent";
 import { useEffect, useState } from "react";
 
 function App() {
-  const url = `https://api.exchangerate-api.com/v4/latest/USD`;
+  const url = `https://api.exchangerate-api.com/v4/latest/AUD`;
 
   const [currencyChoice , setCurrencyChoice] = useState([])
+
+  const [fromCurrency, setFromCurrency] = useState("AUD")
+  const [toCurrency , setToCurrency] = useState("THB")
+
 
   useEffect(() => {
     fetch(url)
@@ -19,9 +23,9 @@ function App() {
       <img src={money} alt="logo" className="money-img" />
       <h1>Currency Exchange (API)</h1>
       <div className="container">
-        <CurrencyComponent currencyChoice={currencyChoice} />
+        <CurrencyComponent currencyChoice={currencyChoice} selectCurrency={fromCurrency} />
         <div className="equal"> = </div>
-        <CurrencyComponent currencyChoice={currencyChoice} />
+        <CurrencyComponent currencyChoice={currencyChoice} selectCurrency={toCurrency} />
       </div>
     </div>
   );

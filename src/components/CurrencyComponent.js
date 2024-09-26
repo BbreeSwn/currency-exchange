@@ -1,11 +1,11 @@
 import "./CurrencyComponent.css";
 
 const CurrencyComponent = (props) => {
-  const { currencyChoice } = props;
+  const { currencyChoice , selectCurrency } = props;
 
   return (
     <div className="currency">
-      <select>
+      <select value={selectCurrency}>
         {currencyChoice.map((choice) => 
           <option key={choice} value={choice}>{choice}</option>
         )}
